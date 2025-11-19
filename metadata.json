@@ -1,0 +1,5 @@
+{
+  "name": "MenuDecider AI",
+  "description": "A smart menu planning tool for indecisive eaters. Features random selection with locking, AI-powered recipe enhancement, shopping list generation, and a customizable food database.",
+  "requestFramePermissions": []
+}
