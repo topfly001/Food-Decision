@@ -1,7 +1,7 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Utensils, Database, RefreshCw, Settings, ShoppingCart, Plus, Search, ListChecks, ChefHat, Languages } from 'lucide-react';
 import { FoodItem, Ingredient, Language } from './types';
-import { INITIAL_DATABASE, generateId } from './constants';
+import { INITIAL_DATABASE } from './constants';
 import FoodCard from './components/FoodCard';
 import EditFoodModal from './components/EditFoodModal';
 import { generateShoppingListAI } from './services/geminiService';
@@ -38,7 +38,6 @@ function App() {
     const staples = foodDb.filter(i => i.type === 'staple');
     const dishes = foodDb.filter(i => i.type === 'dish');
 
-    const newSelectedIds: string[] = [];
     const currentSelected = selectedIds.map(id => getItem(id)).filter(Boolean) as FoodItem[];
 
     // Helper to pick random unique items excluding existing selection if possible
