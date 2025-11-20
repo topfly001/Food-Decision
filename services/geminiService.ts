@@ -58,30 +58,24 @@ export const searchFoodAlternatives = async (query: string, lang: Language): Pro
     try {
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
-        contents: `Find 3 distinct recipes for "${query}". 
-        For each, provide a descriptive title, a short snippet of the cooking method, and if possible, find a source URL.
+        contents: `Find 3 distinct recipes for "${query}" using Google Search. 
+        For each, provide a descriptive title, a short snippet of the cooking method, the source URL, and if available, a high-quality image URL from the search result.
         The content (title, snippet) MUST be in ${lang === 'zh' ? 'Chinese (Simplified)' : 'English'}.
-        The response must be a JSON array of objects.`,
+        
+        Output the result strictly as a valid JSON array of objects with keys: "title", "snippet", "sourceUrl", "imageUrl".
+        Do not use Markdown formatting or code blocks. Just return the raw JSON string.`,
         config: {
           tools: [{ googleSearch: {} }],
-          responseMimeType: 'application/json',
-          responseSchema: {
-            type: Type.ARRAY,
-            items: {
-              type: Type.OBJECT,
-              properties: {
-                title: { type: Type.STRING },
-                snippet: { type: Type.STRING },
-                sourceUrl: { type: Type.STRING },
-              }
-            }
-          }
+          // responseMimeType: 'application/json' is NOT supported with googleSearch tools
         },
       });
   
-      const text = response.text;
+      let text = response.text;
       if (!text) return [];
       
+      // Clean up markdown if present
+      text = text.replace(/```json/g, '').replace(/```/g, '').trim();
+
       const candidates = JSON.parse(text) as SearchResultCandidate[];
       return candidates;
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Search, Loader2, Globe } from 'lucide-react';
+import { X, Search, Loader2, Globe, Image as ImageIcon, FileText } from 'lucide-react';
 import { FoodItem, SearchResultCandidate, Language } from '../types';
 import { searchFoodAlternatives, generateFoodFromCandidate } from '../services/geminiService';
 import { Translation } from '../translations';
@@ -26,6 +26,7 @@ const EnhanceModal: React.FC<EnhanceModalProps> = ({ isOpen, onClose, currentIte
     if (!query.trim()) return;
     setIsLoading(true);
     setError('');
+    setResults([]);
     try {
       const data = await searchFoodAlternatives(query, lang);
       setResults(data);
@@ -37,7 +38,21 @@ const EnhanceModal: React.FC<EnhanceModalProps> = ({ isOpen, onClose, currentIte
     }
   };
 
-  const handleSelect = async (candidate: SearchResultCandidate) => {
+  const handleSelect = async (candidate: SearchResultCandidate, mode: 'full' | 'image') => {
+    if (mode === 'image') {
+       // Image only - fast update
+       if (!candidate.imageUrl) return;
+       
+       const updated: FoodItem = {
+         ...currentItem,
+         imageUrl: candidate.imageUrl
+       };
+       onUpdate(updated);
+       onClose();
+       return;
+    }
+
+    // Full update - requires another AI call
     setIsApplying(true);
     try {
       const details = await generateFoodFromCandidate(candidate, lang);
@@ -64,7 +79,7 @@ const EnhanceModal: React.FC<EnhanceModalProps> = ({ isOpen, onClose, currentIte
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden">
         
         <div className="p-5 border-b flex justify-between items-center bg-gray-50">
           <h2 className="text-lg font-bold text-gray-800">{t.findAlt}</h2>
@@ -83,6 +98,7 @@ const EnhanceModal: React.FC<EnhanceModalProps> = ({ isOpen, onClose, currentIte
                     type="text" 
                     value={query} 
                     onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                     className="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
                     placeholder={t.placeholders.searchAi}
                 />
@@ -106,24 +122,45 @@ const EnhanceModal: React.FC<EnhanceModalProps> = ({ isOpen, onClose, currentIte
             )}
 
             {!isApplying && (
-                <div className="space-y-3">
+                <div className="space-y-4">
                     {results.map((res, idx) => (
-                        <div key={idx} className="border rounded-xl p-4 hover:border-primary hover:bg-orange-50 transition-colors group">
-                            <div className="flex justify-between items-start">
-                                <h3 className="font-bold text-gray-800">{res.title}</h3>
-                                {res.sourceUrl && (
-                                    <a href={res.sourceUrl} target="_blank" rel="noreferrer" className="text-xs text-blue-500 flex items-center gap-1 hover:underline">
-                                        <Globe size={12} /> {t.source}
-                                    </a>
+                        <div key={idx} className="border rounded-xl p-4 hover:border-primary transition-all group bg-white shadow-sm">
+                            <div className="flex flex-col md:flex-row gap-4">
+                                {res.imageUrl && (
+                                    <div className="w-full md:w-32 h-32 shrink-0 rounded-lg overflow-hidden bg-gray-100 border">
+                                        <img src={res.imageUrl} alt={res.title} className="w-full h-full object-cover" />
+                                    </div>
                                 )}
+                                
+                                <div className="flex-1">
+                                    <div className="flex justify-between items-start">
+                                        <h3 className="font-bold text-gray-800">{res.title}</h3>
+                                        {res.sourceUrl && (
+                                            <a href={res.sourceUrl} target="_blank" rel="noreferrer" className="text-xs text-blue-500 flex items-center gap-1 hover:underline whitespace-nowrap ml-2">
+                                                <Globe size={12} /> {t.source}
+                                            </a>
+                                        )}
+                                    </div>
+                                    <p className="text-sm text-gray-600 mt-1 mb-3 line-clamp-3">{res.snippet}</p>
+                                    
+                                    <div className="flex gap-2 mt-auto">
+                                         <button 
+                                            onClick={() => handleSelect(res, 'full')}
+                                            className="flex-1 py-2 px-3 bg-orange-50 border border-primary text-primary rounded-lg text-sm font-medium hover:bg-primary hover:text-white transition-colors flex justify-center items-center gap-2"
+                                        >
+                                            <FileText size={16} /> {t.useVersion}
+                                        </button>
+                                        {res.imageUrl && (
+                                            <button 
+                                                onClick={() => handleSelect(res, 'image')}
+                                                className="flex-1 py-2 px-3 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-100 transition-colors flex justify-center items-center gap-2"
+                                            >
+                                                <ImageIcon size={16} /> {t.useImageOnly}
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
-                            <p className="text-sm text-gray-600 mt-1 mb-3">{res.snippet}</p>
-                            <button 
-                                onClick={() => handleSelect(res)}
-                                className="w-full py-2 border border-primary text-primary rounded-lg text-sm font-medium hover:bg-primary hover:text-white transition-colors flex justify-center items-center gap-2"
-                            >
-                                {t.useVersion}
-                            </button>
                         </div>
                     ))}
                     
