@@ -11,7 +11,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Rice / 米饭',
     type: 'staple',
     description: 'Fluffy white rice. 香软的白米饭。',
-    imageUrl: 'https://images.unsplash.com/photo-1516684732162-7c8c001a12fd?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMJaR5q7i3AmwaxFXfDlKPcmjtmATIAAk4Laxs8lvhULOO7RlOEVZwBAAMCAAN4AAM2BA',
     recipe: '1. Wash rice. 2. Cook. \n1. 淘米。2. 煮饭。',
     ingredients: [{ name: 'Rice/米', amount: '2 cups' }],
     tags: ['Chinese', 'Simple', '主食']
@@ -31,7 +31,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Mantou / 馒头',
     type: 'staple',
     description: 'Steamed buns. 白白胖胖的蒸馒头。',
-    imageUrl: 'https://images.unsplash.com/photo-1536188919818-2542cb5c8cb0?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMIaR5qhwme57q7rxmByxjk9QGekJAAAk0Laxs8lvhUms6pqIykZFsBAAMCAAN3AAM2BA',
     recipe: 'Steam dough. 蒸面团。',
     ingredients: [{ name: 'Flour/面粉', amount: '500g' }, { name: 'Yeast/酵母', amount: '5g' }],
     tags: ['Chinese', 'Bun', '面食']
@@ -41,7 +41,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Congee / 白粥',
     type: 'staple',
     description: 'Rice porridge. 养胃白粥。',
-    imageUrl: 'https://images.unsplash.com/photo-1515044680409-e2d367462254?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMHaR5qF6WVONwRIc_45OBHpmqsG-0AAksLaxs8lvhU-GqT4abEqMYBAAMCAAN4AAM2BA',
     recipe: 'Boil rice with lots of water. 多水煮米。',
     ingredients: [{ name: 'Rice/米', amount: '0.5 cup' }],
     tags: ['Breakfast', 'Light', '清淡']
