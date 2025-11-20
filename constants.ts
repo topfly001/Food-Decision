@@ -11,7 +11,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Rice / 米饭',
     type: 'staple',
     description: 'Fluffy white rice. 香软的白米饭。',
-    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMJaR5q7i3AmwaxFXfDlKPcmjtmATIAAk4Laxs8lvhULOO7RlOEVZwBAAMCAAN4AAM2BA',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMHaR5qF6WVONwRIc_45OBHpmqsG-0AAksLaxs8lvhU-GqT4abEqMYBAAMCAAN4AAM2BA',
     recipe: '1. Wash rice. 2. Cook. \n1. 淘米。2. 煮饭。',
     ingredients: [{ name: 'Rice/米', amount: '2 cups' }],
     tags: ['Chinese', 'Simple', '主食']
@@ -41,7 +41,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Congee / 白粥',
     type: 'staple',
     description: 'Rice porridge. 养胃白粥。',
-    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMHaR5qF6WVONwRIc_45OBHpmqsG-0AAksLaxs8lvhU-GqT4abEqMYBAAMCAAN4AAM2BA',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMJaR5q7i3AmwaxFXfDlKPcmjtmATIAAk4Laxs8lvhULOO7RlOEVZwBAAMCAAN4AAM2BA',
     recipe: 'Boil rice with lots of water. 多水煮米。',
     ingredients: [{ name: 'Rice/米', amount: '0.5 cup' }],
     tags: ['Breakfast', 'Light', '清淡']
@@ -51,7 +51,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Fried Rice / 蛋炒饭',
     type: 'staple',
     description: 'Stir-fried rice with eggs. 简单的蛋炒饭。',
-    imageUrl: 'https://images.unsplash.com/photo-1603133872878-684f208fb74b?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMZaR6kC_FepTFcQdF5UyupWYpM8-gAAtwLaxs8lvhUzZhBuB1QR1oBAAMCAAN4AAM2BA',
     recipe: 'Fry rice with eggs. 蛋液裹饭炒匀。',
     ingredients: [{ name: 'Leftover Rice/剩饭', amount: '1 bowl' }, { name: 'Egg/鸡蛋', amount: '2' }],
     tags: ['Chinese', 'Quick', '快手']
