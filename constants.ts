@@ -73,7 +73,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Kung Pao Chicken / 宫保鸡丁',
     type: 'dish',
     description: 'Chicken with peanuts. 甜酸微辣。',
-    imageUrl: 'https://images.unsplash.com/photo-1525755617732-23e52b810305?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMWaR6hi39_3lrYQ2tooErlhi_7E4QAAtULaxs8lvhUquykKgGhsy0BAAMCAAN5AAM2BA',
     recipe: 'Stir fry chicken, peanuts, chilies. 爆炒鸡丁花生。',
     ingredients: [{ name: 'Chicken/鸡胸肉', amount: '300g' }, { name: 'Peanuts/花生', amount: '50g' }],
     tags: ['Sichuan', 'Classic', '下饭']
@@ -83,7 +83,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Tomato Eggs / 番茄炒蛋',
     type: 'dish',
     description: 'Classic comfort food. 国民家常菜。',
-    imageUrl: 'https://images.unsplash.com/photo-1623653387945-2fd25214f8fc?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMVaR6hiRVsbD20l1i2GE9DvBkaPuAAAtQLaxs8lvhU4ul0ZCD76DMBAAMCAAN5AAM2BA',
     recipe: 'Scramble eggs, fry tomatoes. 炒鸡蛋，炒番茄，混合。',
     ingredients: [{ name: 'Eggs/鸡蛋', amount: '4' }, { name: 'Tomatoes/番茄', amount: '3' }],
     tags: ['Home', 'Quick', '家常']
@@ -93,7 +93,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Braised Pork / 红烧肉',
     type: 'dish',
     description: 'Sweet soy braised pork belly. 肥而不腻。',
-    imageUrl: 'https://images.unsplash.com/photo-1606658896235-6627018d0946?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMUaR6hhh81YY8YPp2ZIYZ-5OfltrAAAtMLaxs8lvhUvyru4o1yS5MBAAMCAAN5AAM2BA',
     recipe: 'Braise pork with soy and sugar. 酱油糖慢炖。',
     ingredients: [{ name: 'Pork Belly/五花肉', amount: '500g' }],
     tags: ['Traditional', 'Meat', '硬菜']
@@ -103,7 +103,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Broccoli Beef / 西兰花炒牛肉',
     type: 'dish',
     description: 'Healthy stir fry. 荤素搭配。',
-    imageUrl: 'https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMTaR6hhEM9II4AAW6ObIfreyzMab9FAALSC2sbPJb4VPn-jKWADVG1AQADAgADeQADNgQ',
     recipe: 'Stir fry beef then broccoli. 炒牛肉，炒西兰花。',
     ingredients: [{ name: 'Beef/牛肉', amount: '200g' }, { name: 'Broccoli/西兰花', amount: '1' }],
     tags: ['Stir-fry', 'Cantonese', '粤菜']
@@ -113,7 +113,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Fish Flavored Pork / 鱼香肉丝',
     type: 'dish',
     description: 'Sweet, sour, spicy pork strips. 没有鱼的鱼香肉丝。',
-    imageUrl: 'https://images.unsplash.com/photo-1563245312-131618062256?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMSaR6hgThKMFu8eLTqdTFGwSn9u3sAAtELaxs8lvhUxoMoEJi4D6cBAAMCAAN3AAM2BA',
     recipe: 'Shred pork, stir fry with wood ear. 肉丝木耳胡萝卜同炒。',
     ingredients: [{ name: 'Pork/猪肉', amount: '200g' }, { name: 'Wood Ear/木耳', amount: '50g' }],
     tags: ['Sichuan', 'Spicy', '下饭']
@@ -123,7 +123,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Steamed Fish / 清蒸鱼',
     type: 'dish',
     description: 'Fresh fish with soy sauce. 鲜嫩蒸鱼。',
-    imageUrl: 'https://images.unsplash.com/photo-1599021456807-25db0f974333?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMRaR6hfgnjaaVtvKj4lysYzL4h8J0AAtALaxs8lvhUxMruPG2DeE4BAAMCAAN3AAM2BA',
     recipe: 'Steam fish, pour hot oil over scallions. 蒸熟泼热油。',
     ingredients: [{ name: 'Fish/鱼', amount: '1' }, { name: 'Scallion/葱', amount: '2' }],
     tags: ['Seafood', 'Healthy', '海鲜']
@@ -133,7 +133,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Potato Strips / 酸辣土豆丝',
     type: 'dish',
     description: 'Sour and spicy crunchy potatoes. 酸辣脆爽。',
-    imageUrl: 'https://images.unsplash.com/photo-1600272328672-30493792c406?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMQaR6he9TEwlVmaHiVlRN0k0jOvYgAAs4Laxs8lvhUou2d5ArAdy0BAAMCAAN3AAM2BA',
     recipe: 'Fry potato strips with vinegar/chili. 猛火快炒加醋。',
     ingredients: [{ name: 'Potato/土豆', amount: '2' }, { name: 'Chili/干辣椒', amount: '5' }],
     tags: ['Veggie', 'Cheap', '素菜']
@@ -143,7 +143,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Coke Wings / 可乐鸡翅',
     type: 'dish',
     description: 'Chicken wings cooked in cola. 孩子最爱。',
-    imageUrl: 'https://images.unsplash.com/photo-1527477396000-64ca9c23d9d9?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMPaR6hecHywS1E5-iKBhqfYf0mr28AAs0Laxs8lvhUlhlma6dXqskBAAMCAAN4AAM2BA',
     recipe: 'Simmer wings in coke. 可乐焖鸡翅。',
     ingredients: [{ name: 'Wings/鸡翅', amount: '10' }, { name: 'Cola/可乐', amount: '1 can' }],
     tags: ['Sweet', 'Easy', '快手']
@@ -153,7 +153,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Lamb Cumin / 孜然羊肉',
     type: 'dish',
     description: 'Spicy cumin lamb. 大漠风味。',
-    imageUrl: 'https://images.unsplash.com/photo-1603048374864-64cb3364086f?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMOaR6hdlAs9gYMxry8DdUmHX2UqSEAAswLaxs8lvhUMwtqYv1gxhgBAAMCAAN3AAM2BA',
     recipe: 'Stir fry lamb with cumin seeds. 爆炒羊肉孜然。',
     ingredients: [{ name: 'Lamb/羊肉', amount: '300g' }, { name: 'Cumin/孜然', amount: '2 tbsp' }],
     tags: ['Meat', 'Spicy', '重口味']
@@ -163,7 +163,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Green Beans / 干煸四季豆',
     type: 'dish',
     description: 'Dry fried string beans. 干香下饭。',
-    imageUrl: 'https://images.unsplash.com/photo-1562976401-7e858680665e?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMNaR6hczw5eseOnzB9pGQrXVc8kgoAAssLaxs8lvhU0zatk2usDjABAAMCAAN5AAM2BA',
     recipe: 'Deep fry beans, stir fry with pork. 炸干煸炒。',
     ingredients: [{ name: 'Beans/四季豆', amount: '400g' }, { name: 'Pork Mince/肉末', amount: '50g' }],
     tags: ['Sichuan', 'Veggie', '素菜']
@@ -175,7 +175,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Cucumber Salad / 拍黄瓜',
     type: 'cold_dish',
     description: 'Garlic cucumber appetizer. 清爽凉菜。',
-    imageUrl: 'https://images.unsplash.com/photo-1605592609762-7d625809203c?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMMaR6hcMJQ_XCrVH_uMKM7d_k0gCIAAsoLaxs8lvhUnT0XzUbVzmIBAAMCAAN4AAM2BA',
     recipe: 'Smash cucumber, add garlic/vinegar. 拍碎黄瓜加蒜醋。',
     ingredients: [{ name: 'Cucumber/黄瓜', amount: '2' }, { name: 'Garlic/大蒜', amount: '3 cloves' }],
     tags: ['Cold', 'Appetizer', '凉菜']
@@ -185,7 +185,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Preserved Egg Tofu / 皮蛋豆腐',
     type: 'cold_dish',
     description: 'Silken tofu with century egg. 经典凉菜。',
-    imageUrl: 'https://images.unsplash.com/photo-1542528180-0c7a56bd3629?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMLaR6hbOy4n1yrjGnx6RIxM6ATJjYAAskLaxs8lvhUPfSExm6sAaIBAAMCAAN5AAM2BA',
     recipe: 'Cut tofu and egg, add soy sauce dressing. 豆腐皮蛋切块淋汁。',
     ingredients: [{ name: 'Silken Tofu/嫩豆腐', amount: '1 box' }, { name: 'Century Egg/皮蛋', amount: '2' }],
     tags: ['Cold', 'Quick', '凉菜']
@@ -197,7 +197,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Tomato Egg Soup / 番茄蛋花汤',
     type: 'soup',
     description: 'Simple and comforting soup. 简单好喝。',
-    imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMKaR6hacwcUINSlAxsPgGJ0TPY_9wAAsgLaxs8lvhUBzF-TyUXH1UBAAMCAAN5AAM2BA',
     recipe: 'Boil tomatoes, swirl in egg. 煮番茄水，淋入蛋液。',
     ingredients: [{ name: 'Tomato/番茄', amount: '2' }, { name: 'Egg/鸡蛋', amount: '1' }],
     tags: ['Soup', 'Warm', '汤']
@@ -207,7 +207,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Corn Pork Rib Soup / 玉米排骨汤',
     type: 'soup',
     description: 'Slow cooked clear soup. 营养清甜。',
-    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMYaR6hkbBC1h8yhulDu_rhj-hOogAD1wtrGzyW-FTfgLSFpNtkJgEAAwIAA3kAAzYE',
     recipe: 'Simmer ribs and corn for 2 hours. 排骨玉米慢炖。',
     ingredients: [{ name: 'Ribs/排骨', amount: '500g' }, { name: 'Corn/甜玉米', amount: '2' }],
     tags: ['Soup', 'Slow Cook', '汤']
@@ -229,7 +229,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     name: 'Soy Milk / 豆浆',
     type: 'drink',
     description: 'Fresh soy milk. 早餐必备。',
-    imageUrl: 'https://images.unsplash.com/photo-1600788886242-5c96aabe3757?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://freetubed.netlib.re/api/cfile/AgACAgUAAyEGAAS7KCaJAAMXaR6hjpDGAAGMsdV7OXk9dFBeK0tvAALWC2sbPJb4VAQ_cIhQvcpdAQADAgADeQADNgQ',
     recipe: 'Soak beans, blend, boil. 泡豆打浆煮沸。',
     ingredients: [{ name: 'Soybeans/黄豆', amount: '100g' }],
     tags: ['Drink', 'Healthy', '饮料']
