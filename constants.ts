@@ -57,7 +57,7 @@ export const INITIAL_DATABASE: FoodItem[] = [
     tags: ['Chinese', 'Quick', '快手']
   },
 
-  // --- Dishes ---
+  // --- Hot Dishes ---
   {
     id: 'd1',
     name: 'Mapo Tofu / 麻婆豆腐',
@@ -119,16 +119,6 @@ export const INITIAL_DATABASE: FoodItem[] = [
     tags: ['Sichuan', 'Spicy', '下饭']
   },
   {
-    id: 'd7',
-    name: 'Cucumber Salad / 拍黄瓜',
-    type: 'dish',
-    description: 'Garlic cucumber appetizer. 清爽凉菜。',
-    imageUrl: 'https://images.unsplash.com/photo-1605592609762-7d625809203c?auto=format&fit=crop&w=800&q=80',
-    recipe: 'Smash cucumber, add garlic/vinegar. 拍碎黄瓜加蒜醋。',
-    ingredients: [{ name: 'Cucumber/黄瓜', amount: '2' }, { name: 'Garlic/大蒜', amount: '3 cloves' }],
-    tags: ['Cold', 'Appetizer', '凉菜']
-  },
-  {
     id: 'd8',
     name: 'Steamed Fish / 清蒸鱼',
     type: 'dish',
@@ -177,5 +167,71 @@ export const INITIAL_DATABASE: FoodItem[] = [
     recipe: 'Deep fry beans, stir fry with pork. 炸干煸炒。',
     ingredients: [{ name: 'Beans/四季豆', amount: '400g' }, { name: 'Pork Mince/肉末', amount: '50g' }],
     tags: ['Sichuan', 'Veggie', '素菜']
+  },
+
+  // --- Cold Dishes (New) ---
+  {
+    id: 'c1',
+    name: 'Cucumber Salad / 拍黄瓜',
+    type: 'cold_dish',
+    description: 'Garlic cucumber appetizer. 清爽凉菜。',
+    imageUrl: 'https://images.unsplash.com/photo-1605592609762-7d625809203c?auto=format&fit=crop&w=800&q=80',
+    recipe: 'Smash cucumber, add garlic/vinegar. 拍碎黄瓜加蒜醋。',
+    ingredients: [{ name: 'Cucumber/黄瓜', amount: '2' }, { name: 'Garlic/大蒜', amount: '3 cloves' }],
+    tags: ['Cold', 'Appetizer', '凉菜']
+  },
+  {
+    id: 'c2',
+    name: 'Preserved Egg Tofu / 皮蛋豆腐',
+    type: 'cold_dish',
+    description: 'Silken tofu with century egg. 经典凉菜。',
+    imageUrl: 'https://images.unsplash.com/photo-1542528180-0c7a56bd3629?auto=format&fit=crop&w=800&q=80',
+    recipe: 'Cut tofu and egg, add soy sauce dressing. 豆腐皮蛋切块淋汁。',
+    ingredients: [{ name: 'Silken Tofu/嫩豆腐', amount: '1 box' }, { name: 'Century Egg/皮蛋', amount: '2' }],
+    tags: ['Cold', 'Quick', '凉菜']
+  },
+
+  // --- Soups (New) ---
+  {
+    id: 'so1',
+    name: 'Tomato Egg Soup / 番茄蛋花汤',
+    type: 'soup',
+    description: 'Simple and comforting soup. 简单好喝。',
+    imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80',
+    recipe: 'Boil tomatoes, swirl in egg. 煮番茄水，淋入蛋液。',
+    ingredients: [{ name: 'Tomato/番茄', amount: '2' }, { name: 'Egg/鸡蛋', amount: '1' }],
+    tags: ['Soup', 'Warm', '汤']
+  },
+  {
+    id: 'so2',
+    name: 'Corn Pork Rib Soup / 玉米排骨汤',
+    type: 'soup',
+    description: 'Slow cooked clear soup. 营养清甜。',
+    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80',
+    recipe: 'Simmer ribs and corn for 2 hours. 排骨玉米慢炖。',
+    ingredients: [{ name: 'Ribs/排骨', amount: '500g' }, { name: 'Corn/甜玉米', amount: '2' }],
+    tags: ['Soup', 'Slow Cook', '汤']
+  },
+
+  // --- Drinks (New) ---
+  {
+    id: 'dr1',
+    name: 'Cola / 可乐',
+    type: 'drink',
+    description: 'Ice cold cola. 快乐水。',
+    imageUrl: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80',
+    recipe: 'Open can. Pour over ice. 打开，加冰。',
+    ingredients: [{ name: 'Cola/可乐', amount: '1 can' }],
+    tags: ['Drink', 'Soda', '饮料']
+  },
+  {
+    id: 'dr2',
+    name: 'Soy Milk / 豆浆',
+    type: 'drink',
+    description: 'Fresh soy milk. 早餐必备。',
+    imageUrl: 'https://images.unsplash.com/photo-1600788886242-5c96aabe3757?auto=format&fit=crop&w=800&q=80',
+    recipe: 'Soak beans, blend, boil. 泡豆打浆煮沸。',
+    ingredients: [{ name: 'Soybeans/黄豆', amount: '100g' }],
+    tags: ['Drink', 'Healthy', '饮料']
   }
 ];

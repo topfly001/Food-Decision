@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Save, Trash2, Search } from 'lucide-react';
-import { FoodItem, Language } from '../types';
+import { FoodItem, Language, FoodType } from '../types';
 import { generateId } from '../constants';
 import EnhanceModal from './EnhanceModal';
 import { Translation } from '../translations';
@@ -39,7 +39,7 @@ const EditFoodModal: React.FC<EditFoodModalProps> = ({ isOpen, onClose, item, on
         setFormData({
           id: generateId(),
           name: '',
-          type: 'dish',
+          type: 'dish', // default
           description: '',
           imageUrl: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80', // default placeholder
           recipe: '',
@@ -78,6 +78,14 @@ const EditFoodModal: React.FC<EditFoodModalProps> = ({ isOpen, onClose, item, on
   const removeIngredient = (idx: number) => {
     setFormData({ ...formData, ingredients: formData.ingredients.filter((_, i) => i !== idx) });
   };
+
+  const foodTypes: {id: FoodType, label: string}[] = [
+      { id: 'staple', label: t.staple },
+      { id: 'dish', label: t.dish },
+      { id: 'cold_dish', label: t.cold_dish },
+      { id: 'soup', label: t.soup },
+      { id: 'drink', label: t.drink },
+  ];
 
   return (
     <>
@@ -123,26 +131,19 @@ const EditFoodModal: React.FC<EditFoodModalProps> = ({ isOpen, onClose, item, on
                 </div>
 
                 <div>
-                     <label className="block text-sm font-medium text-gray-700 mb-1">{t.type}</label>
-                     <div className="flex gap-4">
-                        <label className="flex items-center gap-2 cursor-pointer">
-                            <input 
-                                type="radio" 
-                                checked={formData.type === 'staple'} 
-                                onChange={() => setFormData({...formData, type: 'staple'})}
-                                className="text-primary focus:ring-primary"
-                            />
-                            <span>{t.staple}</span>
-                        </label>
-                        <label className="flex items-center gap-2 cursor-pointer">
-                            <input 
-                                type="radio" 
-                                checked={formData.type === 'dish'} 
-                                onChange={() => setFormData({...formData, type: 'dish'})}
-                                className="text-primary focus:ring-primary"
-                            />
-                            <span>{t.dish}</span>
-                        </label>
+                     <label className="block text-sm font-medium text-gray-700 mb-2">{t.type}</label>
+                     <div className="flex flex-wrap gap-3">
+                        {foodTypes.map(ft => (
+                             <label key={ft.id} className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg border transition-all ${formData.type === ft.id ? 'bg-orange-50 border-primary text-primary' : 'bg-white border-gray-200 hover:bg-gray-50'}`}>
+                                <input 
+                                    type="radio" 
+                                    checked={formData.type === ft.id} 
+                                    onChange={() => setFormData({...formData, type: ft.id})}
+                                    className="text-primary focus:ring-primary accent-primary"
+                                />
+                                <span className="text-sm font-medium">{ft.label}</span>
+                            </label>
+                        ))}
                      </div>
                 </div>
 

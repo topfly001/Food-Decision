@@ -24,13 +24,28 @@ const FoodCard: React.FC<FoodCardProps> = ({
 }) => {
   if (!item) {
     return (
-      <div className="w-full h-64 border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center text-gray-400">
-        <span className="text-sm">{t.emptySlot}</span>
+      <div className="w-full h-64 border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center text-gray-400 bg-gray-50/50">
+        <span className="text-sm font-medium">{t.emptySlot}</span>
       </div>
     );
   }
 
-  const displayType = item.type === 'staple' ? t.staple : t.dish;
+  let displayType = t.dish;
+  if (item.type === 'staple') displayType = t.staple;
+  else if (item.type === 'cold_dish') displayType = t.cold_dish;
+  else if (item.type === 'soup') displayType = t.soup;
+  else if (item.type === 'drink') displayType = t.drink;
+
+  const getTypeColor = () => {
+      switch(item.type) {
+          case 'staple': return 'bg-secondary';
+          case 'dish': return 'bg-primary';
+          case 'cold_dish': return 'bg-emerald-500';
+          case 'soup': return 'bg-sky-500';
+          case 'drink': return 'bg-purple-500';
+          default: return 'bg-primary';
+      }
+  }
 
   return (
     <div className={`relative group bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg ${isLocked ? 'ring-2 ring-primary' : ''}`}>
@@ -46,7 +61,11 @@ const FoodCard: React.FC<FoodCardProps> = ({
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 to-transparent opacity-60"></div>
         
         <div className="absolute bottom-3 left-3 text-white">
-          <p className="text-xs font-bold uppercase tracking-wider opacity-80">{displayType}</p>
+          <div className="flex items-center gap-2 mb-1">
+             <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full text-white ${getTypeColor()}`}>
+                {displayType}
+             </span>
+          </div>
           <h3 className="text-lg font-bold leading-tight">{item.name}</h3>
         </div>
 

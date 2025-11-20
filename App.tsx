@@ -15,6 +15,10 @@ function App() {
   // Generator State
   const [numStaples, setNumStaples] = useState(1);
   const [numDishes, setNumDishes] = useState(3);
+  const [numColdDishes, setNumColdDishes] = useState(1);
+  const [numSoups, setNumSoups] = useState(1);
+  const [numDrinks, setNumDrinks] = useState(0);
+
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [lockedIds, setLockedIds] = useState<Set<string>>(new Set());
   const [showShoppingList, setShowShoppingList] = useState(false);
@@ -37,6 +41,9 @@ function App() {
   const randomizeMenu = () => {
     const staples = foodDb.filter(i => i.type === 'staple');
     const dishes = foodDb.filter(i => i.type === 'dish');
+    const coldDishes = foodDb.filter(i => i.type === 'cold_dish');
+    const soups = foodDb.filter(i => i.type === 'soup');
+    const drinks = foodDb.filter(i => i.type === 'drink');
 
     const currentSelected = selectedIds.map(id => getItem(id)).filter(Boolean) as FoodItem[];
 
@@ -56,8 +63,17 @@ function App() {
     
     const selectedStaples = pickRandom(staples, numStaples, lockedItems);
     const selectedDishes = pickRandom(dishes, numDishes, lockedItems);
+    const selectedCold = pickRandom(coldDishes, numColdDishes, lockedItems);
+    const selectedSoups = pickRandom(soups, numSoups, lockedItems);
+    const selectedDrinks = pickRandom(drinks, numDrinks, lockedItems);
 
-    setSelectedIds([...selectedStaples.map(i => i.id), ...selectedDishes.map(i => i.id)]);
+    setSelectedIds([
+        ...selectedStaples.map(i => i.id), 
+        ...selectedDishes.map(i => i.id),
+        ...selectedCold.map(i => i.id),
+        ...selectedSoups.map(i => i.id),
+        ...selectedDrinks.map(i => i.id)
+    ]);
   };
 
   // Initial load
@@ -123,10 +139,24 @@ function App() {
 
   const selectedStaples = selectedIds.map(id => getItem(id)).filter(i => i?.type === 'staple') as FoodItem[];
   const selectedDishes = selectedIds.map(id => getItem(id)).filter(i => i?.type === 'dish') as FoodItem[];
+  const selectedCold = selectedIds.map(id => getItem(id)).filter(i => i?.type === 'cold_dish') as FoodItem[];
+  const selectedSoups = selectedIds.map(id => getItem(id)).filter(i => i?.type === 'soup') as FoodItem[];
+  const selectedDrinks = selectedIds.map(id => getItem(id)).filter(i => i?.type === 'drink') as FoodItem[];
 
   const filteredDb = foodDb.filter(item => 
     item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     item.tags.some(t => t.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
+  const Counter = ({ label, value, onChange, max = 10 }: { label: string, value: number, onChange: (n: number) => void, max?: number }) => (
+      <div>
+        <label className="block text-xs font-medium text-gray-500 mb-1">{label}</label>
+        <div className="flex items-center gap-2 bg-gray-50 rounded-lg p-1 border">
+          <button onClick={() => onChange(Math.max(0, value - 1))} className="w-6 h-6 rounded bg-white shadow-sm flex items-center justify-center hover:bg-gray-100 text-sm">-</button>
+          <span className="font-bold w-4 text-center text-sm">{value}</span>
+          <button onClick={() => onChange(Math.min(max, value + 1))} className="w-6 h-6 rounded bg-white shadow-sm flex items-center justify-center hover:bg-gray-100 text-sm">+</button>
+        </div>
+      </div>
   );
 
   return (
@@ -178,36 +208,25 @@ function App() {
             
             {/* Controls */}
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                <div className="flex gap-8">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.staplesCount}</label>
-                    <div className="flex items-center gap-3">
-                      <button onClick={() => setNumStaples(Math.max(1, numStaples - 1))} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200">-</button>
-                      <span className="text-xl font-bold w-4 text-center">{numStaples}</span>
-                      <button onClick={() => setNumStaples(Math.min(5, numStaples + 1))} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200">+</button>
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t.dishesCount}</label>
-                    <div className="flex items-center gap-3">
-                      <button onClick={() => setNumDishes(Math.max(1, numDishes - 1))} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200">-</button>
-                      <span className="text-xl font-bold w-4 text-center">{numDishes}</span>
-                      <button onClick={() => setNumDishes(Math.min(10, numDishes + 1))} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200">+</button>
-                    </div>
-                  </div>
+              <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 w-full lg:w-auto">
+                  <Counter label={t.staplesCount} value={numStaples} onChange={setNumStaples} />
+                  <Counter label={t.dishesCount} value={numDishes} onChange={setNumDishes} />
+                  <Counter label={t.coldDishesCount} value={numColdDishes} onChange={setNumColdDishes} />
+                  <Counter label={t.soupsCount} value={numSoups} onChange={setNumSoups} />
+                  <Counter label={t.drinksCount} value={numDrinks} onChange={setNumDrinks} />
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-3 shrink-0">
                    <button 
                     onClick={handleShoppingList}
-                    className="px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-xl font-bold shadow-sm hover:bg-gray-50 transition-all flex items-center gap-2"
+                    className="px-4 md:px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-xl font-bold shadow-sm hover:bg-gray-50 transition-all flex items-center gap-2"
                   >
                     <ShoppingCart size={20} /> {t.shoppingList}
                   </button>
                   <button 
                     onClick={randomizeMenu}
-                    className="px-6 py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-orange-200 hover:bg-orange-600 transition-all flex items-center gap-2 active:scale-95"
+                    className="px-4 md:px-6 py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-orange-200 hover:bg-orange-600 transition-all flex items-center gap-2 active:scale-95"
                   >
                     <RefreshCw size={20} /> {t.spinMenu}
                   </button>
@@ -215,40 +234,105 @@ function App() {
               </div>
             </div>
 
-            {/* Display Area */}
-            <div>
-              <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2"><span className="w-2 h-8 bg-secondary rounded-full"></span> {t.staplesHeader}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {Array.from({ length: numStaples }).map((_, i) => (
-                  <FoodCard 
-                    key={`staple-${i}`}
-                    item={selectedStaples[i] || null} 
-                    isLocked={selectedStaples[i] ? lockedIds.has(selectedStaples[i].id) : false}
-                    onToggleLock={() => selectedStaples[i] && toggleLock(selectedStaples[i].id)}
-                    onRefresh={() => selectedStaples[i] && replaceSingleItem(selectedStaples[i].id)}
-                    onEdit={(item) => { setEditingItem(item); setIsEditModalOpen(true); }}
-                    t={t}
-                  />
-                ))}
-              </div>
-            </div>
+            {/* Display Area - Staples */}
+            {numStaples > 0 && (
+                <div>
+                    <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2"><span className="w-2 h-8 bg-secondary rounded-full"></span> {t.staplesHeader}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {Array.from({ length: numStaples }).map((_, i) => (
+                        <FoodCard 
+                            key={`staple-${i}`}
+                            item={selectedStaples[i] || null} 
+                            isLocked={selectedStaples[i] ? lockedIds.has(selectedStaples[i].id) : false}
+                            onToggleLock={() => selectedStaples[i] && toggleLock(selectedStaples[i].id)}
+                            onRefresh={() => selectedStaples[i] && replaceSingleItem(selectedStaples[i].id)}
+                            onEdit={(item) => { setEditingItem(item); setIsEditModalOpen(true); }}
+                            t={t}
+                        />
+                        ))}
+                    </div>
+                </div>
+            )}
 
-            <div>
-              <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2"><span className="w-2 h-8 bg-primary rounded-full"></span> {t.dishesHeader}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {Array.from({ length: numDishes }).map((_, i) => (
-                  <FoodCard 
-                    key={`dish-${i}`}
-                    item={selectedDishes[i] || null} 
-                    isLocked={selectedDishes[i] ? lockedIds.has(selectedDishes[i].id) : false}
-                    onToggleLock={() => selectedDishes[i] && toggleLock(selectedDishes[i].id)}
-                    onRefresh={() => selectedDishes[i] && replaceSingleItem(selectedDishes[i].id)}
-                    onEdit={(item) => { setEditingItem(item); setIsEditModalOpen(true); }}
-                    t={t}
-                  />
-                ))}
-              </div>
-            </div>
+            {/* Display Area - Hot Dishes */}
+            {numDishes > 0 && (
+                <div>
+                    <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2"><span className="w-2 h-8 bg-primary rounded-full"></span> {t.dishesHeader}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {Array.from({ length: numDishes }).map((_, i) => (
+                        <FoodCard 
+                            key={`dish-${i}`}
+                            item={selectedDishes[i] || null} 
+                            isLocked={selectedDishes[i] ? lockedIds.has(selectedDishes[i].id) : false}
+                            onToggleLock={() => selectedDishes[i] && toggleLock(selectedDishes[i].id)}
+                            onRefresh={() => selectedDishes[i] && replaceSingleItem(selectedDishes[i].id)}
+                            onEdit={(item) => { setEditingItem(item); setIsEditModalOpen(true); }}
+                            t={t}
+                        />
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* Display Area - Cold Dishes */}
+            {numColdDishes > 0 && (
+                <div>
+                    <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2"><span className="w-2 h-8 bg-emerald-500 rounded-full"></span> {t.coldDishesHeader}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {Array.from({ length: numColdDishes }).map((_, i) => (
+                        <FoodCard 
+                            key={`cold-${i}`}
+                            item={selectedCold[i] || null} 
+                            isLocked={selectedCold[i] ? lockedIds.has(selectedCold[i].id) : false}
+                            onToggleLock={() => selectedCold[i] && toggleLock(selectedCold[i].id)}
+                            onRefresh={() => selectedCold[i] && replaceSingleItem(selectedCold[i].id)}
+                            onEdit={(item) => { setEditingItem(item); setIsEditModalOpen(true); }}
+                            t={t}
+                        />
+                        ))}
+                    </div>
+                </div>
+            )}
+
+             {/* Display Area - Soups */}
+             {numSoups > 0 && (
+                <div>
+                    <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2"><span className="w-2 h-8 bg-sky-500 rounded-full"></span> {t.soupsHeader}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {Array.from({ length: numSoups }).map((_, i) => (
+                        <FoodCard 
+                            key={`soup-${i}`}
+                            item={selectedSoups[i] || null} 
+                            isLocked={selectedSoups[i] ? lockedIds.has(selectedSoups[i].id) : false}
+                            onToggleLock={() => selectedSoups[i] && toggleLock(selectedSoups[i].id)}
+                            onRefresh={() => selectedSoups[i] && replaceSingleItem(selectedSoups[i].id)}
+                            onEdit={(item) => { setEditingItem(item); setIsEditModalOpen(true); }}
+                            t={t}
+                        />
+                        ))}
+                    </div>
+                </div>
+            )}
+
+             {/* Display Area - Drinks */}
+             {numDrinks > 0 && (
+                <div>
+                    <h2 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2"><span className="w-2 h-8 bg-purple-500 rounded-full"></span> {t.drinksHeader}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {Array.from({ length: numDrinks }).map((_, i) => (
+                        <FoodCard 
+                            key={`drink-${i}`}
+                            item={selectedDrinks[i] || null} 
+                            isLocked={selectedDrinks[i] ? lockedIds.has(selectedDrinks[i].id) : false}
+                            onToggleLock={() => selectedDrinks[i] && toggleLock(selectedDrinks[i].id)}
+                            onRefresh={() => selectedDrinks[i] && replaceSingleItem(selectedDrinks[i].id)}
+                            onEdit={(item) => { setEditingItem(item); setIsEditModalOpen(true); }}
+                            t={t}
+                        />
+                        ))}
+                    </div>
+                </div>
+            )}
 
           </div>
         ) : (

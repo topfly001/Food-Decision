@@ -1,4 +1,4 @@
-export type FoodType = 'staple' | 'dish';
+export type FoodType = 'staple' | 'dish' | 'cold_dish' | 'soup' | 'drink';
 export type Language = 'en' | 'zh';
 
 export interface Ingredient {
